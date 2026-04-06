@@ -58,24 +58,27 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12">
+    <div className="min-h-screen py-12">
       <div className="container mx-auto max-w-3xl px-4">
-        <div className="bg-white rounded-2xl shadow-xl p-8">
-          <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">Share Your Feedback</h1>
-            <p className="text-gray-600">Help us improve our product with your suggestions</p>
+        <div className="feedpulse-surface rounded-[28px] p-8 md:p-10">
+          <div className="mb-8 text-center">
+            <span className="inline-flex items-center rounded-full bg-[#EFF6FF] px-3 py-1 text-xs font-semibold text-[#2563EB] ring-1 ring-[#DBEAFE]">
+              Public Feedback
+            </span>
+            <h1 className="mt-4 text-4xl font-bold tracking-tight text-gray-900">Share Your Feedback</h1>
+            <p className="mt-2 text-gray-600">Help us improve our product with your suggestions</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="mb-2 block text-sm font-medium text-gray-700">
                 Title <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
                 value={formData.title}
                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="feedpulse-input"
                 placeholder="Brief summary of your feedback"
                 maxLength={120}
               />
@@ -86,13 +89,13 @@ export default function Home() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="mb-2 block text-sm font-medium text-gray-700">
                 Description <span className="text-red-500">*</span>
               </label>
               <textarea
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="feedpulse-input min-h-[140px]"
                 rows={5}
                 placeholder="Please provide detailed information about your feedback..."
               />
@@ -103,11 +106,11 @@ export default function Home() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
+              <label className="mb-2 block text-sm font-medium text-gray-700">Category</label>
               <select
                 value={formData.category}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                className="feedpulse-input"
               >
                 <option>Bug</option>
                 <option>Feature Request</option>
@@ -118,22 +121,22 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Name (optional)</label>
+                <label className="mb-2 block text-sm font-medium text-gray-700">Name (optional)</label>
                 <input
                   type="text"
                   value={formData.submitterName}
                   onChange={(e) => setFormData({ ...formData, submitterName: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                  className="feedpulse-input"
                   placeholder="Your name"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Email (optional)</label>
+                <label className="mb-2 block text-sm font-medium text-gray-700">Email (optional)</label>
                 <input
                   type="email"
                   value={formData.submitterEmail}
                   onChange={(e) => setFormData({ ...formData, submitterEmail: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                  className="feedpulse-input"
                   placeholder="your@email.com"
                 />
                 {errors.submitterEmail && <p className="text-red-500 text-sm mt-1">{errors.submitterEmail}</p>}
@@ -143,25 +146,25 @@ export default function Home() {
             <button
               type="submit"
               disabled={status === 'submitting'}
-              className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
+              className="feedpulse-button-primary w-full"
             >
               {status === 'submitting' ? 'Submitting...' : 'Submit Feedback'}
             </button>
 
             {status === 'submitting' && (
-              <div className="bg-blue-100 border border-blue-300 text-blue-700 px-4 py-3 rounded-lg">
+              <div className="rounded-lg border border-[#BFDBFE] bg-[#EFF6FF] px-4 py-3 text-[#2563EB]">
                 Submitting your feedback...
               </div>
             )}
 
             {status === 'success' && (
-              <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg">
+              <div className="rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-green-700">
                 {statusMessage}
               </div>
             )}
 
             {status === 'error' && (
-              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg">
+              <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-red-700">
                 {statusMessage || 'Failed to submit feedback. Please try again later.'}
               </div>
             )}

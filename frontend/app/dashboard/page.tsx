@@ -124,18 +124,21 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="min-h-screen">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
+      <div className="sticky top-0 z-10 border-b border-white/70 bg-white/70 backdrop-blur-xl">
         <div className="container mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-gray-900">FeedPulse Dashboard</h1>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#6366F1]">Admin View</p>
+              <h1 className="text-2xl font-bold text-gray-900">FeedPulse Dashboard</h1>
+            </div>
             <button
               onClick={() => {
                 localStorage.removeItem('token');
                 router.push('/login');
               }}
-              className="text-red-600 hover:text-red-700 font-medium"
+              className="rounded-lg border border-red-200 bg-red-50 px-4 py-2 font-medium text-red-700 transition hover:bg-red-100"
             >
               Logout
             </button>
@@ -147,37 +150,37 @@ export default function Dashboard() {
       <div className="container mx-auto px-6 py-8">
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="feedpulse-surface rounded-2xl p-6">
             <p className="text-gray-500 text-sm">Total Feedback</p>
             <p className="text-3xl font-bold text-gray-900">{stats.total}</p>
           </div>
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="feedpulse-surface rounded-2xl p-6">
             <p className="text-gray-500 text-sm">Open Items</p>
-            <p className="text-3xl font-bold text-yellow-600">{stats.open}</p>
+            <p className="text-3xl font-bold text-[#F59E0B]">{stats.open}</p>
           </div>
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="feedpulse-surface rounded-2xl p-6">
             <p className="text-gray-500 text-sm">Avg Priority Score</p>
-            <p className="text-3xl font-bold text-blue-600">{stats.averagePriority.toFixed(1)}/10</p>
+            <p className="text-3xl font-bold text-[#3B82F6]">{stats.averagePriority.toFixed(1)}/10</p>
           </div>
-          <div className="bg-white rounded-lg shadow p-6 md:col-span-3">
+          <div className="feedpulse-surface rounded-2xl p-6 md:col-span-3">
             <p className="text-gray-500 text-sm">Most Common Tag</p>
             <p className="text-2xl font-bold text-gray-900">{stats.mostCommonTag || 'N/A'}</p>
           </div>
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-lg shadow p-6 mb-8">
+        <div className="feedpulse-surface mb-8 rounded-2xl p-6">
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
             <input
               value={filters.search}
               onChange={(e) => setFilters({ ...filters, search: e.target.value })}
               placeholder="Search title or summary"
-              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="feedpulse-input"
             />
             <select
               value={filters.category}
               onChange={(e) => setFilters({ ...filters, category: e.target.value })}
-              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="feedpulse-input"
             >
               <option value="">All Categories</option>
               <option>Bug</option>
@@ -188,7 +191,7 @@ export default function Dashboard() {
             <select
               value={filters.status}
               onChange={(e) => setFilters({ ...filters, status: e.target.value })}
-              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="feedpulse-input"
             >
               <option value="">All Status</option>
               <option>New</option>
@@ -198,7 +201,7 @@ export default function Dashboard() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as 'date' | 'priority' | 'sentiment')}
-              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="feedpulse-input"
             >
               <option value="date">Sort by Date</option>
               <option value="priority">Sort by Priority</option>
@@ -207,7 +210,7 @@ export default function Dashboard() {
             <select
               value={sortOrder}
               onChange={(e) => setSortOrder(e.target.value as 'asc' | 'desc')}
-              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="feedpulse-input"
             >
               <option value="desc">Descending</option>
               <option value="asc">Ascending</option>
@@ -217,13 +220,13 @@ export default function Dashboard() {
         </div>
 
         {/* Feedback Table */}
-        <div className="bg-white rounded-lg shadow overflow-hidden">
+        <div className="feedpulse-surface overflow-hidden rounded-2xl">
           {refreshing && (
-            <div className="px-6 py-3 text-sm text-blue-600 border-b border-gray-200">Refreshing feedback…</div>
+            <div className="border-b border-[#DBEAFE] px-6 py-3 text-sm text-[#2563EB]">Refreshing feedback…</div>
           )}
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-50">
+              <thead className="bg-[#EFF6FF]">
                 <tr>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
@@ -235,7 +238,7 @@ export default function Dashboard() {
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {feedback.map((item: Feedback) => (
-                  <tr key={item._id} className="hover:bg-gray-50">
+                  <tr key={item._id} className="transition hover:bg-[#F8FBFF]">
                     <td className="px-6 py-4">
                       <div className="font-medium text-gray-900">{item.title}</div>
                       {item.ai_summary && (
@@ -257,7 +260,7 @@ export default function Dashboard() {
                       <select
                         value={item.status}
                         onChange={(e) => updateStatus(item._id, e.target.value)}
-                        className="text-sm border border-gray-300 rounded-lg px-2 py-1 bg-white focus:ring-2 focus:ring-blue-500"
+                        className="text-sm rounded-lg border border-[#DBEAFE] bg-white px-2 py-1 focus:ring-4 focus:ring-[#EFF6FF]"
                       >
                         <option>New</option>
                         <option>In Review</option>

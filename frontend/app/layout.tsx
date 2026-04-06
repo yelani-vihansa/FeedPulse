@@ -16,18 +16,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <nav className="bg-white shadow-md border-b border-gray-200">
-          <div className="container mx-auto px-6 py-3">
+      <body className={`${inter.className} min-h-screen`}>
+        <nav className="border-b border-white/70 bg-white/70 shadow-sm backdrop-blur-xl">
+          <div className="container mx-auto px-6 py-4">
             <div className="flex justify-between items-center">
-              <a href="/" className="text-xl font-bold text-blue-600 hover:text-blue-700">
+              <a href="/" className="text-xl font-bold text-[#2563EB] hover:text-[#3B82F6]">
                 FeedPulse
               </a>
               <div className="space-x-4">
-                <a href="/" className="text-gray-600 hover:text-blue-600 transition-colors">
+                <a href="/" className="text-gray-600 hover:text-[#2563EB] transition-colors">
                   Submit Feedback
                 </a>
-                <a href="/login" className="text-gray-600 hover:text-blue-600 transition-colors">
+                <a href="/login" className="text-gray-600 hover:text-[#2563EB] transition-colors">
                   Admin Login
                 </a>
               </div>

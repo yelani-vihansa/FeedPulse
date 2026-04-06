@@ -133,15 +133,11 @@ Frontend runs on `http://localhost:3000`.
 
 ## Screenshots
 
-Add at least 2 screenshots here before submitting:
+### Public Feedback Form
+![Public feedback form](./screenshots/image.png)
 
-- Public feedback form
-- Admin dashboard
-
-Example:
-
-![Public feedback form](./screenshots/home.png)
-![Admin dashboard](./screenshots/dashboard.png)
+### Admin Dashboard
+![Admin dashboard](./screenshots/Screenshot%202026-04-06%20131116.png)
 
 ## Notes
 

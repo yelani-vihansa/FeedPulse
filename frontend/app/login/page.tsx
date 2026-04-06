@@ -41,10 +41,10 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4">
-      <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full">
+    <div className="min-h-screen flex items-center justify-center px-4 py-12">
+      <div className="feedpulse-surface w-full max-w-md rounded-[28px] p-8 md:p-10">
         <div className="text-center mb-8">
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-700 mb-4">
+          <span className="inline-flex items-center rounded-full bg-[#EFF6FF] px-3 py-1 text-xs font-semibold text-[#2563EB] ring-1 ring-[#DBEAFE] mb-4">
             Demo Project
           </span>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Admin Login</h1>
@@ -53,24 +53,24 @@ export default function Login() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+            <label className="mb-2 block text-sm font-medium text-gray-700">Email</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="feedpulse-input"
               placeholder="admin@feedpulse.com"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
+            <label className="mb-2 block text-sm font-medium text-gray-700">Password</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="feedpulse-input"
               placeholder="••••••••"
               required
             />
@@ -85,19 +85,19 @@ export default function Login() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors font-medium"
+            className="feedpulse-button-primary w-full"
           >
             {loading ? 'Logging in...' : 'Login'}
           </button>
 
           {loading && (
-            <div className="bg-blue-100 border border-blue-300 text-blue-700 px-4 py-3 rounded-lg text-sm">
+            <div className="rounded-lg border border-[#BFDBFE] bg-[#EFF6FF] px-4 py-3 text-sm text-[#2563EB]">
               Signing you in...
             </div>
           )}
         </form>
 
-        <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+        <div className="mt-6 rounded-2xl border border-[#DBEAFE] bg-[#F8FBFF] p-4">
           <p className="text-sm text-gray-600 text-center">
             Demo credentials for this project:<br />
             <span className="font-mono text-xs">admin@feedpulse.com / feedplusadmin</span>
