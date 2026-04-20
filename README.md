@@ -17,7 +17,7 @@ FeedPulse is an AI-powered product feedback platform. It lets users submit feedb
 - Fields for title, description, category, name, and email
 - Client-side validation
 - Success and error states
-- Character counter for the description field
+- Character counter for the description field.
 
 ### AI Analysis
 - Gemini runs on each submission
